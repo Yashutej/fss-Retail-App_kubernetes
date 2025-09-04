@@ -14,7 +14,7 @@ spec:
         app: userprofile
     spec:
       containers:
-      - name: usernode-js
+      - name: yashaswini-usernode-js
         image: saiteja2502/userprofileretail:latest
         ports:
         - containerPort: 3130  # Change to match your app's port
