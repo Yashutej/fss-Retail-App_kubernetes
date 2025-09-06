@@ -18,3 +18,28 @@ services:
     image: mongo:latest 
     ports:
       - '27017:27017'
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus_todo
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9092:9090"
+    networks:
+      - monitoring-net
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana_Todo
+    ports:
+      - "3000"
+    environment:
+      - GF_SMTP_ENABLED=true
+      - GF_SMTP_HOST=smtp.gmail.com:587
+      - GF_SMTP_USER=klyashaswini632@gmail.com
+      - GF_SMTP_PASSWORD=afmg wzxl ksru oxjj
+      - GF_SMTP_SKIP_VERIFY=true
+      - GF_SMTP_FROM_ADDRESS=klyashaswini632@gmail.com
+      - GF_SMTP_FROM_NAME=Grafana Alerts
+    networks:
+      - monitoring-net
